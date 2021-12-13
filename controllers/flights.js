@@ -12,9 +12,10 @@ function index(req, res) {
     if (err) {
       console.log(err);
     }
-
-    console.log(flights)
-    res.render('flights/index', { flights });
+    res.render('flights/index', { 
+      title: "All Flights",
+      flights 
+    });
 
   });
 }
@@ -22,7 +23,10 @@ function index(req, res) {
 function show(req, res) {
   Flight.findById(req.params.id, function (err, flight) {
     {
-      res.render('flights/show', { title: "Flight Detail", flight, });
+      res.render('flights/show', { 
+        title: "Flight Detail", 
+        flight,
+       });
     };
   });
 };
@@ -30,7 +34,9 @@ function show(req, res) {
 
 
 function newFlight(req, res) {
-  res.render("flights/new");
+  res.render("flights/new",
+  { title: "Add Flight" }
+  );
 }
 
 
