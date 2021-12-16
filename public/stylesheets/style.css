@@ -99,3 +99,12 @@ table td {
   width: 10rem;
   grid-column: 2 / 3;
 }
+
+
+#ticketBox {
+  border: 3px solid red
+}
+
+#destinationBox {
+  border: 3px solid yellow
+}

@@ -21,45 +21,73 @@
     <br><br>
     <h2>Destinations</h2>
     <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
-      
-      
+
+
       <label>Arrival</label>
       <input name="arrival" type="datetime-local">
-      
+
       <label>Airport</label>
       <select name="airport">
-          <option value="AUS">AUS</option>
-          <option value="DFW">DFW</option>
-          <option value="DEN" selected>DEN</option>
-          <option value="LAX">LAX</option>
-          <option value="SAN">SAN</option>
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
       </select>
-  
+
+
       <input type="submit" value="Add Destination">
     </form>
 
-
     <% if (flight.destinations.length) { %>
-      <table>
+      <table id="destinationBox">
         <thead>
           <tr>
             <th>Destinations</th>
           </tr>
         </thead>
         <tbody>
-            <% flight.destinations.forEach(function(f) { %>
+          <% flight.destinations.forEach(function(f) { %>
             <tr>
-             
-              <td><%= f.airport %></td>
-              <td><%= f.arrival %></td>
+
+              <td>
+                <%= f.airport %>
+              </td>
+              <td>
+                <%= f.arrival %>
+              </td>
             </tr>
-          <% }); %>
+            <% }); %>
         </tbody>
       </table>
-    <% } %>
+      <% } %>
+
+        <% if (tickets.length) { %>
+          <table id="ticketBox">
+            <tr>
+              <th>Seat</th>
+              <th>Gold Coins</th>
+              <th></th>
+            </tr>
+            <% tickets.forEach(function(t) { %>
+              <tr>
+                <td>
+                  <%= t.seat %>
+                </td>
+                <td>
+                  <%= t.price %>
+                </td>
+              </tr>
+              <% }) %>
+          </table>
+          <% } %>
+
+            <form action="/flights/<%=flight._id%>/tickets/new" method="GET">
+              <input type="submit" value="NEW TICKET">
+            </form>
 
 
 
 
 
-    <%- include('../partials/footer') %>
+            <%- include('../partials/footer') %>
